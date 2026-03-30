@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXE — Premium Shopping</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand" onclick="scrollToShop()">LUXE</div>
+  <div class="nav-links">
+    <a onclick="setCategory('all')" class="active" id="nav-all">All</a>
+    <a onclick="setCategory('clothing')" id="nav-clothing">Clothing</a>
+    <a onclick="setCategory('accessories')" id="nav-accessories">Accessories</a>
+    <a onclick="setCategory('home')" id="nav-home">Home</a>
+  </div>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="openCart()">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </button>
+    <a href="/admin/" class="admin-btn">Admin ↗</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">New Collection 2025</p>
+  <h1 class="hero-title">Curated for the<br><em>Discerning Few</em></h1>
+  <p class="hero-sub">Exceptional pieces for exceptional lives. Timeless quality, minimal excess.</p>
+  <button class="btn-primary" onclick="document.querySelector('.shop-header').scrollIntoView({behavior:'smooth'})">Explore Collection</button>
+</div>
+
+<div class="shop-header">
+  <h2 class="shop-title">The Collection</h2>
+  <div class="filters">
+    <button class="filter-btn active" onclick="setCategory('all',this)">All</button>
+    <button class="filter-btn" onclick="setCategory('clothing',this)">Clothing</button>
+    <button class="filter-btn" onclick="setCategory('accessories',this)">Accessories</button>
+    <button class="filter-btn" onclick="setCategory('home',this)">Home</button>
+  </div>
+</div>
+
+<div class="product-grid" id="product-grid">
+  <div class="loading">Loading products…</div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-head">
+    <span class="cart-head-title">Your Cart</span>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cart-total">$0.00</span>
+    </div>
+    <div id="checkout-form" style="display:none;margin-bottom:1rem">
+      <input type="text"  id="c-name"  placeholder="Your name"  style="width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:4px;font-family:var(--font-body);font-size:13px;outline:none;margin-bottom:8px">
+      <input type="email" id="c-email" placeholder="Email (optional)" style="width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:4px;font-family:var(--font-body);font-size:13px;outline:none">
+    </div>
+    <button class="checkout-btn" id="checkout-btn" onclick="handleCheckout()">Checkout</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="/script.js"></script>
+</body>
+</html>
